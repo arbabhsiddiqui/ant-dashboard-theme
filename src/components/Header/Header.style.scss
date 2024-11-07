@@ -1,11 +1,22 @@
 .c-header {
-  grid-area: header;
-  --ant-layout-header-bg: purple;
+  --ant-layout-header-bg: rgb(238, 233, 238);
+  min-height: 80px;
+  padding-block: 1rem;
+  padding-inline: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-  text-align: 'center';
-  color: '#fff';
-  height: 64;
-  padding-inline: 48;
-  line-height: '64px';
-  background-color: '#4096ff';
+  &__title-area {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    line-height: 25px;
+    h3 {
+      display: inline-flex;
+      margin: 0 !important;
+      padding: 0;
+    }
+  }
 }
