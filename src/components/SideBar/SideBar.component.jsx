@@ -1,6 +1,12 @@
 import { useState } from 'react';
-import { Button, Layout } from 'antd';
-import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
+import { Layout, Menu } from 'antd';
+import {
+  DatabaseFilled,
+  HomeOutlined,
+  SettingFilled,
+  UsergroupAddOutlined,
+} from '@ant-design/icons';
+import { Link } from 'react-router-dom';
 
 // local imports
 const { Sider } = Layout;
@@ -12,15 +18,44 @@ const SideBar = () => {
 
   return (
     <Sider
-      // collapsible
+      collapsible
       collapsed={collapsed}
+      onCollapse={(value) => setCollapsed(value)}
       className='c-sidebar'
     >
-      <Button
-        icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-        onClick={() => setCollapsed(!collapsed)}
-        SideBar
-      ></Button>
+      <h1>Demo </h1>
+      <Menu
+        defaultSelectedKeys={['home']}
+        mode={'inline'}
+      >
+        <Menu.Item
+          key='home'
+          icon={<HomeOutlined />}
+        >
+          <Link to='/'>Dashboard</Link>
+        </Menu.Item>
+
+        <Menu.Item
+          key='user-management'
+          icon={<UsergroupAddOutlined />}
+        >
+          <Link to='/user-management'>User Management</Link>
+        </Menu.Item>
+
+        <Menu.Item
+          key='reports'
+          icon={<DatabaseFilled />}
+        >
+          <Link to='/reports'>Reports</Link>
+        </Menu.Item>
+
+        <Menu.Item
+          key='settings'
+          icon={<SettingFilled />}
+        >
+          <Link to='/settings'>Settings</Link>
+        </Menu.Item>
+      </Menu>
     </Sider>
   );
 };

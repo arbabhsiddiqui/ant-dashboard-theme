@@ -18,17 +18,14 @@ function App() {
             element={<Dashboard />}
           />
           <Route
-            index
             path={'/user-management'}
             element={<UserManagement />}
           />
           <Route
-            index
-            path={'/report'}
+            path={'/reports'}
             element={<Report />}
           />
           <Route
-            index
             path={'/settings'}
             element={<Settings />}
           />

@@ -1,7 +1,46 @@
 .c-sidebar {
-  --ant-layout-sider-bg: pink !important;
-  text-align: 'center';
-  line-height: '120px';
-  color: '#fff';
-  width: '10vw';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-block-start: 1rem;
+  background: var(--base);
+
+  h1 {
+    color: var(--black);
+    margin-block-end: 2rem;
+  }
+
+  .ant-menu {
+    background: transparent;
+    border-inline-end: none !important;
+
+    .ant-menu-item {
+      text-align: start;
+      &:hover {
+        background: var(--white) !important;
+
+        .anticon {
+          background: var(--primary);
+          color: var(--white);
+        }
+      }
+
+      &.ant-menu-item-selected {
+        background: var(--white) !important;
+        color: var(--black);
+        font-weight: 500;
+        .anticon {
+          background: var(--primary);
+          color: var(--white);
+        }
+      }
+
+      .anticon {
+        background: var(--white);
+        padding: 0.5rem;
+        border-radius: 5px;
+      }
+    }
+  }
 }
