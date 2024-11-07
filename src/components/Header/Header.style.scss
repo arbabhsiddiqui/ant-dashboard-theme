@@ -1,5 +1,5 @@
 .c-header {
-  --ant-layout-header-bg: rgb(238, 233, 238);
+  --ant-layout-header-bg: var(--base);
   min-height: 80px;
   padding-block: 1rem;
   padding-inline: 48px;
@@ -17,6 +17,61 @@
       display: inline-flex;
       margin: 0 !important;
       padding: 0;
+    }
+  }
+
+  &__profile-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+
+    .search {
+      --search-border-radius: 5px;
+      border: 1px solid var(--grey);
+      border-radius: var(--search-border-radius);
+      .ant-input-wrapper {
+        border-radius: var(--search-border-radius);
+        .ant-input-group-addon {
+          border-radius: var(--search-border-radius) 0 0
+            var(--search-border-radius);
+          background: var(--white);
+          border-color: var(--white);
+        }
+        input {
+          border-color: var(--white);
+          border-radius: 0 var(--search-border-radius)
+            var(--search-border-radius) 0;
+
+          &:focus {
+            box-shadow: none;
+          }
+        }
+      }
+    }
+
+    .sign-in {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      .sign-avatar {
+        background: var(--black);
+        color: var(--white);
+      }
+    }
+
+    .ant-badge-count {
+      transform: translate(27%, -23%);
+    }
+
+    .bell-avatar {
+      background: transparent;
+      color: var(--black);
     }
   }
 }
