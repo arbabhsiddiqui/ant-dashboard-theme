@@ -1,0 +1,11 @@
+.c-header {
+  grid-area: header;
+  --ant-layout-header-bg: purple;
+
+  text-align: 'center';
+  color: '#fff';
+  height: 64;
+  padding-inline: 48;
+  line-height: '64px';
+  background-color: '#4096ff';
+}
