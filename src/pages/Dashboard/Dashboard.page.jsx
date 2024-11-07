@@ -1,46 +1,191 @@
-import { Flex } from 'antd';
+import { Avatar, Card, Col, Flex, Row, Space, Table, Tag } from 'antd';
+
+import {
+  MoneyCollectFilled,
+  OrderedListOutlined,
+  UsergroupAddOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
 
 import './Dashboard.style.scss';
 
+const columns = [
+  {
+    title: 'Name',
+    dataIndex: 'name',
+    key: 'name',
+    render: (text) => <a>{text}</a>,
+  },
+  {
+    title: 'Age',
+    dataIndex: 'age',
+    key: 'age',
+  },
+  {
+    title: 'Address',
+    dataIndex: 'address',
+    key: 'address',
+  },
+  {
+    title: 'Tags',
+    key: 'tags',
+    dataIndex: 'tags',
+    render: (_, { tags }) => (
+      <>
+        {tags.map((tag) => {
+          let color = tag.length > 5 ? 'geekblue' : 'green';
+          if (tag === 'loser') {
+            color = 'volcano';
+          }
+          return (
+            <Tag
+              color={color}
+              key={tag}
+            >
+              {tag.toUpperCase()}
+            </Tag>
+          );
+        })}
+      </>
+    ),
+  },
+  {
+    title: 'Action',
+    key: 'action',
+    render: (_, record) => (
+      <Space size='middle'>
+        <a>Invite {record.name}</a>
+        <a>Delete</a>
+      </Space>
+    ),
+  },
+];
+const data = [
+  {
+    key: '1',
+    name: 'John Brown',
+    age: 32,
+    address: 'New York No. 1 Lake Park',
+    tags: ['nice', 'developer'],
+  },
+  {
+    key: '2',
+    name: 'Jim Green',
+    age: 42,
+    address: 'London No. 1 Lake Park',
+    tags: ['loser'],
+  },
+  {
+    key: '3',
+    name: 'Joe Black',
+    age: 32,
+    address: 'Sydney No. 1 Lake Park',
+    tags: ['cool', 'teacher'],
+  },
+];
+
 const Dashboard = () => {
   return (
-    <Flex
-      gap='middle'
-      wrap
+    <Space
+      size='large'
+      direction='vertical'
+      className='p-dashboard'
     >
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas aliquam
-      voluptate neque alias libero eius sit aperiam cumque architecto est odit,
-      quia, vitae illum? Amet, corporis animi, maxime quos perspiciatis
-      similique ipsam aspernatur quaerat unde magni nam ab et cupiditate minus
-      culpa alias iure accusamus quidem, assumenda at sunt tempore voluptate?
-      Eos consequatur architecto libero, reprehenderit dolor est ut atque
-      perferendis quis ullam maiores voluptate? Quo corporis facilis quidem
-      reprehenderit! Eaque, nemo dolorem excepturi possimus earum dignissimos.
-      Possimus labore maiores quo laboriosam, quae voluptatem natus eum quasi
-      quam porro adipisci fuga, voluptas dolores illo numquam nobis sequi.
-      Corrupti quo deleniti cumque cum debitis odio, dicta voluptatem magnam
-      consectetur rem, culpa, hic minima. Voluptas qui molestias saepe ea ipsum,
-      iste soluta perferendis blanditiis obcaecati minima reiciendis
-      voluptatibus praesentium id tempora reprehenderit nemo, quaerat, vel
-      fugiat placeat. Necessitatibus non minima iste dolorum nobis eligendi
-      dolore adipisci provident consectetur porro distinctio dignissimos debitis
-      veniam soluta cumque corrupti suscipit nesciunt at dolorem, nemo vero.
-      Omnis aperiam numquam, inventore porro voluptate illum. Necessitatibus
-      odit reiciendis deleniti beatae minus harum magni voluptas nihil, aperiam
-      asperiores ducimus quos, at, tempore ea distinctio quas architecto
-      similique totam labore eum? Esse architecto laudantium doloribus
-      cupiditate ipsa blanditiis pariatur. Velit cum ipsa voluptatum. Veniam,
-      fuga? Eius nesciunt ab placeat? Non minima, est odit esse, veritatis
-      repudiandae ducimus consequuntur voluptatum magni quasi debitis explicabo
-      exercitationem, sed quo eaque quae a rem aliquam distinctio fuga hic sint
-      odio deleniti! Voluptate perferendis, eveniet nesciunt atque, eius
-      architecto corporis, quidem impedit porro minus quam? Ex quas suscipit
-      iusto sed eaque tempora dolore aliquid sapiente, fugiat ipsa expedita
-      harum adipisci, ea nemo minus odit. Inventore exercitationem suscipit
-      saepe distinctio debitis est illum illo iusto vitae ratione dolore velit,
-      dolorum sint, temporibus modi commodi? Corporis repudiandae nemo earum
-      reprehenderit, odit saepe quae animi facere ducimus suscipit.
-    </Flex>
+      <Row gutter={16}>
+        <Col span={6}>
+          <Card>
+            <Flex className='c-card'>
+              <div className='c-card__text-area'>
+                <h6>Total Users</h6>
+                <h1>
+                  3000
+                  <span className='success'>+30%</span>
+                </h1>
+              </div>
+
+              <Avatar
+                shape='square'
+                size={50}
+                icon={<UsergroupAddOutlined />}
+              />
+            </Flex>
+          </Card>
+        </Col>
+        <Col span={6}>
+          <Card>
+            <Flex className='c-card'>
+              <div className='c-card__text-area'>
+                <h6>Active Users </h6>
+                <h1>
+                  300
+                  <span className='danger'>-30%</span>
+                </h1>
+              </div>
+
+              <Avatar
+                shape='square'
+                size={50}
+                icon={<UsergroupAddOutlined />}
+              />
+            </Flex>
+          </Card>
+        </Col>
+        <Col span={6}>
+          <Card>
+            <Flex className='c-card'>
+              <div className='c-card__text-area'>
+                <h6>Revenue</h6>
+                <h1>
+                  Rs 300000
+                  <span className='success'>+60%</span>
+                </h1>
+              </div>
+
+              <Avatar
+                shape='square'
+                size={50}
+                icon={<MoneyCollectFilled />}
+              />
+            </Flex>
+          </Card>
+        </Col>
+        <Col span={6}>
+          <Card>
+            <Flex className='c-card'>
+              <div className='c-card__text-area'>
+                <h6>Orders</h6>
+                <h1>
+                  300
+                  <span className='danger'>+50%</span>
+                </h1>
+              </div>
+
+              <Avatar
+                shape='square'
+                size={50}
+                icon={<OrderedListOutlined />}
+              />
+            </Flex>
+          </Card>
+        </Col>
+      </Row>
+      <Row>
+        <Col span={24}>
+          <Table
+            columns={columns}
+            dataSource={data}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col span={24}>
+          <Table
+            columns={columns}
+            dataSource={data}
+          />
+        </Col>
+      </Row>
+    </Space>
   );
 };
 
