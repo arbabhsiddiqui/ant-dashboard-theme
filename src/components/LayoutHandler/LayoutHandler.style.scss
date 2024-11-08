@@ -1,8 +1,13 @@
 .c-layout {
   &__content-area {
-    padding-block: 2rem;
-    padding-inline: 3rem;
+    padding-block: 1rem;
+    padding-inline: 1rem;
     min-height: 89vh;
     color: #000;
+
+    @media only screen and (min-width: 769px) {
+      padding-block: 2rem;
+      padding-inline: 3rem;
+    }
   }
 }
