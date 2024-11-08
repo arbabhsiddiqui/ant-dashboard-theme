@@ -1,15 +1,19 @@
-import { Avatar, Card, Col, Flex, Row, Space, Table, Tag } from 'antd';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Avatar, Card, Col, Flex, Row, Space, Table, Skeleton } from 'antd';
 
 import {
   MoneyCollectFilled,
   OrderedListOutlined,
   UsergroupAddOutlined,
-  UserOutlined,
 } from '@ant-design/icons';
+
+// local imports
+import { fetchActivityData, fetchUserData } from '../../utils/dataHelper';
 
 import './Dashboard.style.scss';
 
-const columns = [
+const userColumns = [
   {
     title: 'Name',
     dataIndex: 'name',
@@ -17,74 +21,118 @@ const columns = [
     render: (text) => <a>{text}</a>,
   },
   {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
+    title: 'Email',
+    dataIndex: 'email',
+    key: 'email',
   },
   {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
+    title: 'Status',
+    dataIndex: 'status',
+    key: 'status',
   },
   {
-    title: 'Tags',
-    key: 'tags',
-    dataIndex: 'tags',
-    render: (_, { tags }) => (
-      <>
-        {tags.map((tag) => {
-          let color = tag.length > 5 ? 'geekblue' : 'green';
-          if (tag === 'loser') {
-            color = 'volcano';
-          }
-          return (
-            <Tag
-              color={color}
-              key={tag}
-            >
-              {tag.toUpperCase()}
-            </Tag>
-          );
-        })}
-      </>
-    ),
+    title: 'Role',
+    key: 'role',
+    dataIndex: 'role',
   },
   {
     title: 'Action',
     key: 'action',
     render: (_, record) => (
       <Space size='middle'>
-        <a>Invite {record.name}</a>
-        <a>Delete</a>
+        <Link to={`user-management/edit/${record.key}`}>Edit </Link>
+        <span
+          className='text-danger hover'
+          onClick={() => {
+            console.log(record.key);
+          }}
+        >
+          Delete
+        </span>
       </Space>
     ),
   },
 ];
-const data = [
+
+const activityColumns = [
   {
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer'],
+    title: 'Name',
+    dataIndex: 'name',
+    key: 'name',
+    render: (text) => <a>{text}</a>,
   },
   {
-    key: '2',
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    tags: ['loser'],
+    title: 'Role',
+    key: 'role',
+    dataIndex: 'role',
   },
   {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sydney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
+    title: 'Activity',
+    dataIndex: 'activity',
+    key: 'activity',
+  },
+  {
+    title: 'Date',
+    dataIndex: 'date',
+    key: 'date',
+  },
+
+  {
+    title: 'Action',
+    key: 'action',
+    render: (_, record) => (
+      <Space size='middle'>
+        <Link to={`user-management/edit/${record.key}`}>Edit </Link>
+        <span
+          className='text-danger hover'
+          onClick={() => {
+            console.log(record.key);
+          }}
+        >
+          Delete
+        </span>
+      </Space>
+    ),
   },
 ];
 
 const Dashboard = () => {
+  const [userData, setUserData] = useState([]);
+  const [loadingUserData, setLoadingUserData] = useState(true);
+
+  const [activityData, setActivityData] = useState([]);
+  const [loadingActivityData, setLoadingActivityData] = useState(true);
+
+  useEffect(() => {
+    // Define an async function inside useEffect to use async/await
+    const fetchUser = async () => {
+      setLoadingUserData(true);
+      try {
+        const response = await fetchUserData();
+        setUserData(response);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      } finally {
+        setLoadingUserData(false);
+      }
+    };
+
+    const fetchActivity = async () => {
+      setLoadingActivityData(true);
+      try {
+        const response = await fetchActivityData();
+        setActivityData(response);
+      } catch (error) {
+        console.error('Error fetching activity data:', error);
+      } finally {
+        setLoadingActivityData(false);
+      }
+    };
+
+    fetchUser();
+    fetchActivity();
+  }, []);
+
   return (
     <Space
       size='large'
@@ -156,7 +204,7 @@ const Dashboard = () => {
                 <h6>Orders</h6>
                 <h1>
                   300
-                  <span className='danger'>+50%</span>
+                  <span className='danger'>-50%</span>
                 </h1>
               </div>
 
@@ -169,22 +217,38 @@ const Dashboard = () => {
           </Card>
         </Col>
       </Row>
-      <Row>
-        <Col span={24}>
-          <Table
-            columns={columns}
-            dataSource={data}
-          />
-        </Col>
-      </Row>
-      <Row>
-        <Col span={24}>
-          <Table
-            columns={columns}
-            dataSource={data}
-          />
-        </Col>
-      </Row>
+
+      <section className='table-container'>
+        <h2>Users</h2>
+        <Row>
+          <Col span={24}>
+            {loadingUserData ? (
+              <Skeleton />
+            ) : (
+              <Table
+                columns={userColumns}
+                dataSource={userData}
+              />
+            )}
+          </Col>
+        </Row>
+      </section>
+
+      <section className='table-container'>
+        <h2>Recent Activities</h2>
+        <Row>
+          <Col span={24}>
+            {loadingActivityData ? (
+              <Skeleton />
+            ) : (
+              <Table
+                columns={activityColumns}
+                dataSource={activityData}
+              />
+            )}
+          </Col>
+        </Row>
+      </section>
     </Space>
   );
 };

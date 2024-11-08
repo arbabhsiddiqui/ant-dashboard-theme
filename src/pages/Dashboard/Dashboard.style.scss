@@ -1,6 +1,12 @@
 .p-dashboard {
   width: 100%;
 
+  .table-container {
+    h2 {
+      margin-bottom: 20px;
+    }
+  }
+
   .c-card {
     border-radius: 20px;
     justify-content: space-between;
