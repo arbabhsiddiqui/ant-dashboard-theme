@@ -226,7 +226,7 @@ const Dashboard = () => {
       </Row>
 
       {/* user table */}
-      <section className='table-container'>
+      <Card className='table-container'>
         <h2>Users</h2>
         <Row>
           <Col span={24}>
@@ -243,11 +243,11 @@ const Dashboard = () => {
             )}
           </Col>
         </Row>
-      </section>
+      </Card>
 
       {/* user activity */}
 
-      <section className='table-container'>
+      <Card className='table-container'>
         <h2>Recent Activities</h2>
         <Row>
           <Col span={24}>
@@ -264,49 +264,7 @@ const Dashboard = () => {
             )}
           </Col>
         </Row>
-      </section>
-
-      {/* user activity */}
-
-      <section className='table-container'>
-        <h2>Recent Activities</h2>
-        <Row>
-          <Col span={24}>
-            {loadingActivityData ? (
-              <Skeleton />
-            ) : (
-              <Table
-                columns={activityColumns}
-                dataSource={activityData}
-                pagination={{
-                  position: ['none', 'none'],
-                }}
-              />
-            )}
-          </Col>
-        </Row>
-      </section>
-
-      {/* user activity */}
-
-      <section className='table-container'>
-        <h2>Recent Activities</h2>
-        <Row>
-          <Col span={24}>
-            {loadingActivityData ? (
-              <Skeleton />
-            ) : (
-              <Table
-                columns={activityColumns}
-                dataSource={activityData}
-                pagination={{
-                  position: ['none', 'none'],
-                }}
-              />
-            )}
-          </Col>
-        </Row>
-      </section>
+      </Card>
     </div>
   );
 };
