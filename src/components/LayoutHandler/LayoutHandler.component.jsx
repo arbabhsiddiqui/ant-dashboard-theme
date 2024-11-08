@@ -1,4 +1,4 @@
-import { Flex, Layout, ConfigProvider, theme } from 'antd';
+import { Flex, Layout, ConfigProvider, theme, Drawer } from 'antd';
 import { Outlet } from 'react-router-dom';
 
 // local imports
@@ -7,19 +7,23 @@ import SideBar from '../SideBar/SideBar.component';
 
 import './LayoutHandler.style.scss';
 import { useState } from 'react';
+import Menus from '../Menus/Menus.compoent';
 
 const LayoutHandler = () => {
-  const [collapsed, setCollapsed] = useState(false);
-
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  const handleThemeSwitch = () => {
+  const handleThemeToggle = () => {
     setIsDarkMode(!isDarkMode);
     if (!isDarkMode) {
       document.body.setAttribute('data-theme', 'dark');
     } else {
       document.body.removeAttribute('data-theme');
     }
+  };
+
+  const handleDrawerToggle = () => {
+    setIsDrawerOpen(true);
   };
 
   return (
@@ -34,17 +38,26 @@ const LayoutHandler = () => {
         wrap
       >
         <Layout className='c-layout'>
-          <SideBar
-            collapsed={collapsed}
-            setCollapsed={setCollapsed}
-          />
+          <Drawer
+            title='Demo'
+            placement='left'
+            closable={false}
+            onClose={() => {
+              setIsDrawerOpen(false);
+            }}
+            open={isDrawerOpen}
+            key={'left'}
+            width={250}
+          >
+            <Menus />
+          </Drawer>
+          <SideBar />
 
           <Layout>
             <Header
-              collapsed={collapsed}
-              setCollapsed={setCollapsed}
+              handleDrawerToggle={handleDrawerToggle}
               isDarkMode={isDarkMode}
-              handleThemeSwitch={handleThemeSwitch}
+              handleThemeToggle={handleThemeToggle}
             />
             <main className='c-layout__content-area'>
               <Outlet />

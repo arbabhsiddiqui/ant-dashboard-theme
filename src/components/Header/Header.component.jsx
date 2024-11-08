@@ -54,7 +54,7 @@ const items = [
   },
 ];
 
-const Header = ({ collapsed, setCollapsed, isDarkMode, handleThemeSwitch }) => {
+const Header = ({ handleDrawerToggle, isDarkMode, handleThemeToggle }) => {
   const [unFilterUserData, setUnFilterUserData] = useState([]);
 
   const [searchUser, setSearchUser] = useState('');
@@ -89,11 +89,7 @@ const Header = ({ collapsed, setCollapsed, isDarkMode, handleThemeSwitch }) => {
   return (
     <AntHeader className='c-header'>
       <div className='c-header__title-area'>
-        <Button
-          onClick={() => {
-            setCollapsed(!collapsed);
-          }}
-        >
+        <Button onClick={handleDrawerToggle}>
           <AlignLeftOutlined />
         </Button>
 
@@ -123,6 +119,15 @@ const Header = ({ collapsed, setCollapsed, isDarkMode, handleThemeSwitch }) => {
           />
         </Space.Compact>
 
+        <MoonOutlined
+          onClick={() => handleThemeToggle()}
+          className={`${!isDarkMode ? 'd-none' : ''}`}
+        />
+        <SunOutlined
+          onClick={() => handleThemeToggle()}
+          className={`${isDarkMode ? 'd-none' : ''}`}
+        />
+
         <Badge
           className='hover'
           count={4}
@@ -132,15 +137,6 @@ const Header = ({ collapsed, setCollapsed, isDarkMode, handleThemeSwitch }) => {
             icon={<BellFilled />}
           />
         </Badge>
-
-        <MoonOutlined
-          onClick={() => handleThemeSwitch()}
-          className={`${!isDarkMode ? 'd-none' : ''}`}
-        />
-        <SunOutlined
-          onClick={() => handleThemeSwitch()}
-          className={`${isDarkMode ? 'd-none' : ''}`}
-        />
 
         <Dropdown
           menu={{

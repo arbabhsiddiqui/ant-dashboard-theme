@@ -1,17 +1,30 @@
 .c-sidebar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  flex-direction: row;
-  background: var(--base);
-  z-index: 9999;
-  position: absolute;
-  height: 100%;
+  margin: 20px 0 0 20px;
+  padding: 13px 20px;
+  height: calc(100vh - 20px);
+  background: transparent;
+  display: none;
 
   @media only screen and (min-width: 769px) {
-    position: relative;
-    box-shadow: none;
+    display: unset;
+  }
+
+  .ant-layout-sider {
+    width: 0 !important;
+    max-width: 0 !important;
+    min-width: 0 !important;
+
+    @media only screen and (min-width: 769px) {
+      flex: 0 0 270px !important;
+      width: 270px !important;
+      max-width: 270px !important;
+      min-width: 270px !important;
+    }
+
+    & .ant-layout-sider-children {
+      width: auto;
+      height: 100%;
+    }
   }
 
   .ant-layout-sider-zero-width-trigger {
@@ -32,50 +45,6 @@
     margin-inline: 1rem;
     h1 {
       color: var(--black);
-    }
-    .collapsed-button {
-      color: var(--danger);
-
-      @media only screen and (min-width: 769px) {
-        display: none;
-      }
-    }
-  }
-
-  .ant-menu {
-    background: transparent;
-    border-inline-end: none !important;
-    overflow: auto;
-    height: 100%;
-    .ant-menu-item {
-      text-align: start;
-
-      &:hover {
-        background: var(--white) !important;
-        box-shadow: 0 20px 27px rgb(0 0 0 / 5%);
-        .anticon {
-          background: var(--primary);
-          color: var(--white);
-        }
-      }
-
-      &.ant-menu-item-selected {
-        box-shadow: 0 20px 27px rgb(0 0 0 / 5%);
-
-        background: var(--white) !important;
-        color: var(--black);
-        font-weight: 500;
-        .anticon {
-          background: var(--primary);
-          color: var(--white);
-        }
-      }
-
-      .anticon {
-        background: var(--white);
-        padding: 0.5rem;
-        border-radius: 5px;
-      }
     }
   }
 }

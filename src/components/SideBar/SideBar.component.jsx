@@ -1,76 +1,26 @@
-import { Button, Layout, Menu } from 'antd';
-import {
-  DatabaseFilled,
-  HomeOutlined,
-  SettingFilled,
-  UsergroupAddOutlined,
-  CloseOutlined,
-} from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import { Layout } from 'antd';
 
 // local imports
 const { Sider } = Layout;
 
 import './SideBar.style.scss';
+import Menus from '../Menus/Menus.compoent';
 
-// Define menu items array
-const menuItems = [
-  {
-    key: 'home',
-    icon: <HomeOutlined />,
-    label: <Link to='/'>Dashboard</Link>,
-  },
-  {
-    key: 'user-management',
-    icon: <UsergroupAddOutlined />,
-    label: <Link to='/user-management'>User Management</Link>,
-  },
-  {
-    key: 'reports',
-    icon: <DatabaseFilled />,
-    label: <Link to='/reports'>Reports</Link>,
-  },
-  {
-    key: 'settings',
-    icon: <SettingFilled />,
-    label: <Link to='/settings'>Settings</Link>,
-  },
-];
-
-const SideBar = ({ collapsed, setCollapsed }) => {
+const SideBar = () => {
   return (
-    <>
-      <Sider
-        width={230} // Custom width for expanded state
-        collapsed={collapsed}
-        className={`c-sidebar ${collapsed ? 'collapsed' : ''}`}
-        breakpoint='lg'
-        collapsedWidth={0}
-      >
-        <div className='c-sidebar__container'>
-          <div className='c-sidebar__title-area'>
-            <h1>Demo</h1>
-            <Button
-              color='danger'
-              variant='outlined'
-              size='small'
-              onClick={() => {
-                setCollapsed(!collapsed);
-              }}
-              className='collapsed-button'
-            >
-              <CloseOutlined className='collapsed-icon' />
-            </Button>
-          </div>
-
-          <Menu
-            defaultSelectedKeys={['home']}
-            mode={'inline'}
-            items={menuItems}
-          />
+    <Sider
+      width={270}
+      className='c-sidebar'
+      collapsedWidth='0'
+      trigger={null}
+    >
+      <div className='c-sidebar__container'>
+        <div className='c-sidebar__title-area'>
+          <h1>Demo</h1>
         </div>
-      </Sider>
-    </>
+        <Menus />
+      </div>
+    </Sider>
   );
 };
 
