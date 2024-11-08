@@ -2,6 +2,7 @@ import { Avatar, Card, Flex } from 'antd';
 
 import { UsergroupAddOutlined } from '@ant-design/icons';
 
+// local imports
 import './ProgressCard.style.scss';
 
 const ProgressCard = ({

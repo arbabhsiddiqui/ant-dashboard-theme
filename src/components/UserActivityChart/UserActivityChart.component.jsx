@@ -8,6 +8,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
+// local imports
 const userActivityData = [
   { time: 'January', activeUsers: 1200 },
   { time: 'February', activeUsers: 1500 },

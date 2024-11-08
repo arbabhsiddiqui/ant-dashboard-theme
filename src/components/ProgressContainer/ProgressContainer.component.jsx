@@ -2,6 +2,7 @@ import { Col, Row } from 'antd';
 
 import { MoneyCollectFilled, OrderedListOutlined } from '@ant-design/icons';
 
+// local imports
 import ProgressCard from '../ProgressCard/ProgressCard.component';
 
 const ProgressContainer = () => {

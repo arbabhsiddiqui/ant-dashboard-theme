@@ -33,7 +33,7 @@ const activityColumns = [
     key: 'action',
     render: (_, record) => (
       <Space size='middle'>
-        <Link to={`user-management/edit/${record.key}`}>Edit </Link>
+        <Link to={`/user-management/edit/${record.key}`}>Edit </Link>
         <span
           className='text-danger hover'
           onClick={() => {

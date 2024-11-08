@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Menu } from 'antd';
 import { Link, useLocation } from 'react-router-dom';
 import { useAtom } from 'jotai';
@@ -12,6 +12,7 @@ import {
 // local imports
 
 import { currentPageAtom } from '../../store/commonStore';
+
 // Define menu items array
 const menuItems = [
   {

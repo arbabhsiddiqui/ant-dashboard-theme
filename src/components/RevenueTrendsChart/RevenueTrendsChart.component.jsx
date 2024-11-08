@@ -8,6 +8,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
+// local imports
 const revenueData = [
   { month: 'January', revenue: 4000 },
   { month: 'February', revenue: 3200 },

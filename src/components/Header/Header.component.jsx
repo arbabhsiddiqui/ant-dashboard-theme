@@ -26,8 +26,9 @@ import { dataAtom, filterDataAtom } from '../../store/userStore';
 import { currentPageAtom, darkModeAtom } from '../../store/commonStore';
 const { Header: AntHeader } = Layout;
 
-import './Header.style.scss';
 import { formatString } from '../../utils/helper';
+
+import './Header.style.scss';
 
 const items = [
   {

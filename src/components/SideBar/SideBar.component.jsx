@@ -3,8 +3,9 @@ import { Layout } from 'antd';
 // local imports
 const { Sider } = Layout;
 
-import './SideBar.style.scss';
 import Menus from '../Menus/Menus.component';
+
+import './SideBar.style.scss';
 
 const SideBar = () => {
   return (

@@ -1,8 +1,10 @@
+import { useEffect, useState } from 'react';
 import { Card, Col, Row, Skeleton, Space, Table } from 'antd';
 import { dataAtom, filterDataAtom } from '../../store/userStore';
 import { useAtom } from 'jotai';
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+
+// local imports
 import { fetchUserData } from '../../utils/dataHelper';
 
 const userColumns = [
@@ -32,7 +34,7 @@ const userColumns = [
     key: 'action',
     render: (_, record) => (
       <Space size='middle'>
-        <Link to={`user-management/edit/${record.key}`}>Edit </Link>
+        <Link to={`/user-management/edit/${record.key}`}>Edit </Link>
         <span
           className='text-danger hover'
           onClick={() => {
