@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Avatar, Card, Col, Flex, Row, Space, Table, Skeleton } from 'antd';
-
+import { useAtom } from 'jotai';
 import {
   MoneyCollectFilled,
   OrderedListOutlined,
@@ -9,7 +9,8 @@ import {
 } from '@ant-design/icons';
 
 // local imports
-import { fetchActivityData, fetchUserData } from '../../utils/dataHelper';
+import { fetchActivityData } from '../../utils/dataHelper';
+import { dataAtom, loadingAtom } from '../../store/userStore';
 
 import './Dashboard.style.scss';
 
@@ -97,26 +98,13 @@ const activityColumns = [
 ];
 
 const Dashboard = () => {
-  const [userData, setUserData] = useState([]);
-  const [loadingUserData, setLoadingUserData] = useState(true);
+  const [userData, setUserData] = useAtom(dataAtom);
+  const [loadingUserData, setLoadingUserData] = useAtom(loadingAtom);
 
   const [activityData, setActivityData] = useState([]);
   const [loadingActivityData, setLoadingActivityData] = useState(true);
 
   useEffect(() => {
-    // Define an async function inside useEffect to use async/await
-    const fetchUser = async () => {
-      setLoadingUserData(true);
-      try {
-        const response = await fetchUserData();
-        setUserData(response);
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      } finally {
-        setLoadingUserData(false);
-      }
-    };
-
     const fetchActivity = async () => {
       setLoadingActivityData(true);
       try {
@@ -129,7 +117,6 @@ const Dashboard = () => {
       }
     };
 
-    fetchUser();
     fetchActivity();
   }, []);
 

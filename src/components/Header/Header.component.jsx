@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+import { useAtom } from 'jotai';
 import {
   Layout,
   Breadcrumb,
@@ -18,6 +20,8 @@ import {
 } from '@ant-design/icons';
 
 // local imports
+import { fetchUserData } from '../../utils/dataHelper';
+import { dataAtom, loadingAtom } from '../../store/userStore';
 const { Header: AntHeader } = Layout;
 
 import './Header.style.scss';
@@ -49,6 +53,37 @@ const items = [
 ];
 
 const Header = ({ collapsed, setCollapsed }) => {
+  const [unFilterUserData, setUnFilterUserData] = useState([]);
+
+  const [searchUser, setSearchUser] = useState('');
+
+  const [userData, setUserData] = useAtom(dataAtom);
+  const [loadingUserData, setLoadingUserData] = useAtom(loadingAtom);
+
+  useEffect(() => {
+    // Define an async function inside useEffect to use async/await
+    const fetchUser = async () => {
+      setLoadingUserData(true);
+      try {
+        const response = await fetchUserData();
+        setUserData(response);
+        setUnFilterUserData(response);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      } finally {
+        setLoadingUserData(false);
+      }
+    };
+    fetchUser();
+  }, []);
+
+  useEffect(() => {
+    let filteredData = unFilterUserData.filter((item) =>
+      item.name.toLowerCase().includes(searchUser.toLowerCase())
+    );
+    setUserData(filteredData);
+  }, [searchUser]);
+
   return (
     <AntHeader className='c-header'>
       <div className='c-header__title-area'>
@@ -80,6 +115,9 @@ const Header = ({ collapsed, setCollapsed }) => {
           <Input
             addonBefore={<SearchOutlined />}
             placeholder='Search'
+            onChange={(e) => {
+              setSearchUser(e.target.value);
+            }}
           />
         </Space.Compact>
 
