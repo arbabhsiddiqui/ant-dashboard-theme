@@ -17,6 +17,8 @@ import {
   BellFilled,
   SettingOutlined,
   CloseOutlined,
+  MoonOutlined,
+  SunOutlined,
 } from '@ant-design/icons';
 
 // local imports
@@ -52,7 +54,7 @@ const items = [
   },
 ];
 
-const Header = ({ collapsed, setCollapsed }) => {
+const Header = ({ collapsed, setCollapsed, isDarkMode, handleThemeSwitch }) => {
   const [unFilterUserData, setUnFilterUserData] = useState([]);
 
   const [searchUser, setSearchUser] = useState('');
@@ -130,6 +132,16 @@ const Header = ({ collapsed, setCollapsed }) => {
             icon={<BellFilled />}
           />
         </Badge>
+
+        <MoonOutlined
+          onClick={() => handleThemeSwitch()}
+          className={`${!isDarkMode ? 'd-none' : ''}`}
+        />
+        <SunOutlined
+          onClick={() => handleThemeSwitch()}
+          className={`${isDarkMode ? 'd-none' : ''}`}
+        />
+
         <Dropdown
           menu={{
             items,

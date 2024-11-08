@@ -51,11 +51,11 @@
         .ant-input-group-addon {
           border-radius: var(--search-border-radius) 0 0
             var(--search-border-radius);
-          background: var(--white);
-          border-color: var(--white);
+          background: var(--ant-color-bg-container);
+          border-color: var(--base);
         }
         input {
-          border-color: var(--white);
+          border-color: var(--ant-color-bg-container);
           border-radius: 0 var(--search-border-radius)
             var(--search-border-radius) 0;
 
