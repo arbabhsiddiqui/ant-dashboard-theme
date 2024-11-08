@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Menu } from 'antd';
 import { Link, useLocation } from 'react-router-dom';
+import { useAtom } from 'jotai';
 import {
   DatabaseFilled,
   HomeOutlined,
@@ -10,6 +11,7 @@ import {
 
 // local imports
 
+import { currentPageAtom } from '../../store/commonStore';
 // Define menu items array
 const menuItems = [
   {
@@ -40,6 +42,8 @@ const Menus = () => {
   const location = useLocation();
   const [defaultKey, setDefaultKey] = useState();
 
+  const [currentPage, setCurrentPage] = useAtom(currentPageAtom);
+
   useEffect(() => {
     const currentPath =
       location.pathname.length > 1
@@ -49,6 +53,7 @@ const Menus = () => {
     menuItems.map((item) => {
       if (item.key == currentPath) {
         setDefaultKey(currentPath);
+        setCurrentPage(currentPath);
       }
     });
   }, [location]);

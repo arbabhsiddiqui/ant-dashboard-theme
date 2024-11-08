@@ -24,9 +24,11 @@ import {
 // local imports
 import { fetchUserData } from '../../utils/dataHelper';
 import { dataAtom, loadingAtom } from '../../store/userStore';
+import { currentPageAtom, darkModeAtom } from '../../store/commonStore';
 const { Header: AntHeader } = Layout;
 
 import './Header.style.scss';
+import { formatString } from '../../utils/helper';
 
 const items = [
   {
@@ -54,13 +56,16 @@ const items = [
   },
 ];
 
-const Header = ({ handleDrawerToggle, isDarkMode, handleThemeToggle }) => {
+const Header = ({ handleDrawerToggle, handleThemeToggle }) => {
   const [unFilterUserData, setUnFilterUserData] = useState([]);
 
   const [searchUser, setSearchUser] = useState('');
 
   const [userData, setUserData] = useAtom(dataAtom);
   const [loadingUserData, setLoadingUserData] = useAtom(loadingAtom);
+
+  const [isDarkMode, setIsDarkMode] = useAtom(darkModeAtom);
+  const [currentPage, setCurrentPage] = useAtom(currentPageAtom);
 
   useEffect(() => {
     // Define an async function inside useEffect to use async/await
@@ -100,11 +105,18 @@ const Header = ({ handleDrawerToggle, isDarkMode, handleThemeToggle }) => {
                 title: 'Pages',
               },
               {
-                title: 'dashboard',
+                title:
+                  currentPage === '/' || currentPage === ''
+                    ? 'dashboard'
+                    : currentPage,
               },
             ]}
           />
-          <h3>Dashboard</h3>
+          <h3>
+            {currentPage === '/' || currentPage === ''
+              ? 'Dashboard'
+              : formatString(currentPage)}
+          </h3>
         </div>
       </div>
 

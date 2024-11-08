@@ -1,16 +1,18 @@
+import { useEffect, useState } from 'react';
 import { Flex, Layout, ConfigProvider, theme, Drawer } from 'antd';
 import { Outlet } from 'react-router-dom';
+import { useAtom } from 'jotai';
 
 // local imports
 import Header from '..//Header/Header.component';
 import SideBar from '../SideBar/SideBar.component';
+import Menus from '../Menus/Menus.compoent';
+import { darkModeAtom } from '../../store/commonStore';
 
 import './LayoutHandler.style.scss';
-import { useState } from 'react';
-import Menus from '../Menus/Menus.compoent';
 
 const LayoutHandler = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useAtom(darkModeAtom);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const handleThemeToggle = () => {
@@ -21,6 +23,14 @@ const LayoutHandler = () => {
       document.body.removeAttribute('data-theme');
     }
   };
+  useEffect(() => {
+    if (isDarkMode) {
+      console.log(isDarkMode);
+      document.body.setAttribute('data-theme', 'dark');
+    } else {
+      document.body.removeAttribute('data-theme');
+    }
+  }, [isDarkMode]);
 
   const handleDrawerToggle = () => {
     setIsDrawerOpen(true);
@@ -56,7 +66,6 @@ const LayoutHandler = () => {
           <Layout>
             <Header
               handleDrawerToggle={handleDrawerToggle}
-              isDarkMode={isDarkMode}
               handleThemeToggle={handleThemeToggle}
             />
             <main className='c-layout__content-area'>
