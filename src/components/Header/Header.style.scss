@@ -1,11 +1,16 @@
 .c-header {
-  --ant-layout-header-bg: var(--base);
-  min-height: 80px;
-  padding-block: 1rem;
-  padding-inline: 48px;
+  height: auto;
+  background: var(--base);
+  padding: 1rem;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
+
+  @media only screen and (min-width: 500px) {
+    align-items: center;
+    flex-direction: row;
+  }
 
   &__title-area {
     display: flex;
@@ -50,19 +55,9 @@
       }
     }
 
-    .sign-in {
-      display: flex;
-      gap: 5px;
-      align-items: center;
-
-      &:hover {
-        cursor: pointer;
-      }
-
-      .sign-avatar {
-        background: var(--black);
-        color: var(--white);
-      }
+    .sign-avatar {
+      background: var(--black);
+      color: var(--white);
     }
 
     .ant-badge-count {

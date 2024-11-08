@@ -6,17 +6,27 @@ import Header from '..//Header/Header.component';
 import SideBar from '../SideBar/SideBar.component';
 
 import './LayoutHandler.style.scss';
+import { useState } from 'react';
 
 const LayoutHandler = () => {
+  const [collapsed, setCollapsed] = useState(false);
+
   return (
     <Flex
       gap='middle'
       wrap
     >
       <Layout className='c-layout'>
-        <SideBar />
+        <SideBar
+          collapsed={collapsed}
+          setCollapsed={setCollapsed}
+        />
+
         <Layout>
-          <Header />
+          <Header
+            collapsed={collapsed}
+            setCollapsed={setCollapsed}
+          />
           <main className='c-layout__content-area'>
             <Outlet />
           </main>

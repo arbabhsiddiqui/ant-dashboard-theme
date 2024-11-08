@@ -43,6 +43,10 @@ p {
   color: var(--danger);
 }
 
+.text-dark {
+  color: var(--black);
+}
+
 .hover {
   &:hover {
     cursor: pointer;

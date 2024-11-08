@@ -1,10 +1,10 @@
-import { useState } from 'react';
 import { Layout, Menu } from 'antd';
 import {
   DatabaseFilled,
   HomeOutlined,
   SettingFilled,
   UsergroupAddOutlined,
+  CloseOutlined,
 } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 
@@ -13,50 +13,59 @@ const { Sider } = Layout;
 
 import './SideBar.style.scss';
 
-const SideBar = () => {
-  const [collapsed, setCollapsed] = useState(false);
-
+const SideBar = ({ collapsed, setCollapsed }) => {
   return (
-    <Sider
-      collapsible
-      collapsed={collapsed}
-      onCollapse={(value) => setCollapsed(value)}
-      className='c-sidebar'
-    >
-      <h1>Demo </h1>
-      <Menu
-        defaultSelectedKeys={['home']}
-        mode={'inline'}
+    <>
+      <Sider
+        collapsed={collapsed}
+        className='c-sidebar'
+        breakpoint='lg'
+        collapsedWidth='0'
       >
-        <Menu.Item
-          key='home'
-          icon={<HomeOutlined />}
-        >
-          <Link to='/'>Dashboard</Link>
-        </Menu.Item>
+        <div className='c-sidebar__title-area'>
+          <h1>Demo</h1>
+          <CloseOutlined
+            className='collapsed-icon'
+            onClick={() => {
+              setCollapsed(!collapsed);
+            }}
+          />
+        </div>
 
-        <Menu.Item
-          key='user-management'
-          icon={<UsergroupAddOutlined />}
+        <Menu
+          defaultSelectedKeys={['home']}
+          mode={'inline'}
         >
-          <Link to='/user-management'>User Management</Link>
-        </Menu.Item>
+          <Menu.Item
+            key='home'
+            icon={<HomeOutlined />}
+          >
+            <Link to='/'>Dashboard</Link>
+          </Menu.Item>
 
-        <Menu.Item
-          key='reports'
-          icon={<DatabaseFilled />}
-        >
-          <Link to='/reports'>Reports</Link>
-        </Menu.Item>
+          <Menu.Item
+            key='user-management'
+            icon={<UsergroupAddOutlined />}
+          >
+            <Link to='/user-management'>User Management</Link>
+          </Menu.Item>
 
-        <Menu.Item
-          key='settings'
-          icon={<SettingFilled />}
-        >
-          <Link to='/settings'>Settings</Link>
-        </Menu.Item>
-      </Menu>
-    </Sider>
+          <Menu.Item
+            key='reports'
+            icon={<DatabaseFilled />}
+          >
+            <Link to='/reports'>Reports</Link>
+          </Menu.Item>
+
+          <Menu.Item
+            key='settings'
+            icon={<SettingFilled />}
+          >
+            <Link to='/settings'>Settings</Link>
+          </Menu.Item>
+        </Menu>
+      </Sider>
+    </>
   );
 };
 

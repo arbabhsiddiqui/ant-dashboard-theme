@@ -134,13 +134,15 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <Space
-      size='large'
-      direction='vertical'
-      className='p-dashboard'
-    >
-      <Row gutter={16}>
-        <Col span={6}>
+    <div className='p-dashboard'>
+      <Row gutter={[24, 23]}>
+        <Col
+          xs={24}
+          sm={24}
+          md={12}
+          lg={8}
+          xl={6}
+        >
           <Card>
             <Flex className='c-card'>
               <div className='c-card__text-area'>
@@ -159,7 +161,13 @@ const Dashboard = () => {
             </Flex>
           </Card>
         </Col>
-        <Col span={6}>
+        <Col
+          xs={24}
+          sm={24}
+          md={12}
+          lg={8}
+          xl={6}
+        >
           <Card>
             <Flex className='c-card'>
               <div className='c-card__text-area'>
@@ -178,7 +186,13 @@ const Dashboard = () => {
             </Flex>
           </Card>
         </Col>
-        <Col span={6}>
+        <Col
+          xs={24}
+          sm={24}
+          md={12}
+          lg={8}
+          xl={6}
+        >
           <Card>
             <Flex className='c-card'>
               <div className='c-card__text-area'>
@@ -197,7 +211,13 @@ const Dashboard = () => {
             </Flex>
           </Card>
         </Col>
-        <Col span={6}>
+        <Col
+          xs={24}
+          sm={24}
+          md={12}
+          lg={8}
+          xl={6}
+        >
           <Card>
             <Flex className='c-card'>
               <div className='c-card__text-area'>
@@ -228,6 +248,9 @@ const Dashboard = () => {
               <Table
                 columns={userColumns}
                 dataSource={userData}
+                pagination={{
+                  position: ['none', 'none'],
+                }}
               />
             )}
           </Col>
@@ -244,12 +267,15 @@ const Dashboard = () => {
               <Table
                 columns={activityColumns}
                 dataSource={activityData}
+                pagination={{
+                  position: ['none', 'none'],
+                }}
               />
             )}
           </Col>
         </Row>
       </section>
-    </Space>
+    </div>
   );
 };
 

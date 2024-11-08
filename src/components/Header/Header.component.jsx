@@ -1,9 +1,19 @@
-import { Layout, Breadcrumb, Space, Input, Avatar, Badge } from 'antd';
+import {
+  Layout,
+  Breadcrumb,
+  Space,
+  Input,
+  Avatar,
+  Badge,
+  Dropdown,
+} from 'antd';
 import {
   SearchOutlined,
   UserOutlined,
-  SettingFilled,
+  AlignLeftOutlined,
   BellFilled,
+  SettingOutlined,
+  CloseOutlined,
 } from '@ant-design/icons';
 
 // local imports
@@ -11,9 +21,33 @@ const { Header: AntHeader } = Layout;
 
 import './Header.style.scss';
 
-const Header = () => {
-  const handleSignIn = () => {};
+const items = [
+  {
+    key: '1',
+    label: 'My Account',
+    disabled: true,
+  },
+  {
+    type: 'divider',
+  },
+  {
+    key: '2',
+    label: 'Profile',
+    icon: <UserOutlined />,
+  },
+  {
+    key: '4',
+    label: 'Settings',
+    icon: <SettingOutlined />,
+  },
+  {
+    key: '3',
+    label: 'Logout',
+    icon: <CloseOutlined />,
+  },
+];
 
+const Header = ({ collapsed, setCollapsed }) => {
   return (
     <AntHeader className='c-header'>
       <div className='c-header__title-area'>
@@ -37,19 +71,11 @@ const Header = () => {
             placeholder='Search'
           />
         </Space.Compact>
-
-        <div
-          className='sign-in'
-          onClick={handleSignIn}
-        >
-          <Avatar
-            className='sign-avatar'
-            size={20}
-            icon={<UserOutlined />}
-          />{' '}
-          Sign in
-        </div>
-        <SettingFilled className='hover' />
+        <AlignLeftOutlined
+          onClick={() => {
+            setCollapsed(!collapsed);
+          }}
+        />
         <Badge
           className='hover'
           count={4}
@@ -59,6 +85,19 @@ const Header = () => {
             icon={<BellFilled />}
           />
         </Badge>
+        <Dropdown
+          menu={{
+            items,
+          }}
+        >
+          <a onClick={(e) => e.preventDefault()}>
+            <Avatar
+              className='sign-avatar'
+              size={20}
+              icon={<UserOutlined />}
+            />
+          </a>
+        </Dropdown>
       </div>
     </AntHeader>
   );

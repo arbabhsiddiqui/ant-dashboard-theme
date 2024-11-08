@@ -5,10 +5,26 @@
   text-align: center;
   padding-block-start: 1rem;
   background: var(--base);
+  z-index: 9999;
+  position: absolute;
+  height: 100%;
 
-  h1 {
-    color: var(--black);
+  @media only screen and (min-width: 500px) {
+    position: relative;
+  }
+
+  &__title-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-block-end: 2rem;
+    margin-inline-start: 1rem;
+    h1 {
+      color: var(--black);
+    }
+    .collapsed-icon {
+      color: var(--danger);
+    }
   }
 
   .ant-menu {
