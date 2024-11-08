@@ -22,8 +22,7 @@ import {
 } from '@ant-design/icons';
 
 // local imports
-import { fetchUserData } from '../../utils/dataHelper';
-import { dataAtom, loadingAtom } from '../../store/userStore';
+import { dataAtom, filterDataAtom } from '../../store/userStore';
 import { currentPageAtom, darkModeAtom } from '../../store/commonStore';
 const { Header: AntHeader } = Layout;
 
@@ -57,38 +56,18 @@ const items = [
 ];
 
 const Header = ({ handleDrawerToggle, handleThemeToggle }) => {
-  const [unFilterUserData, setUnFilterUserData] = useState([]);
-
   const [searchUser, setSearchUser] = useState('');
 
   const [userData, setUserData] = useAtom(dataAtom);
-  const [loadingUserData, setLoadingUserData] = useAtom(loadingAtom);
-
+  const [filterUserData, setFilterUserData] = useAtom(filterDataAtom);
   const [isDarkMode, setIsDarkMode] = useAtom(darkModeAtom);
   const [currentPage, setCurrentPage] = useAtom(currentPageAtom);
 
   useEffect(() => {
-    // Define an async function inside useEffect to use async/await
-    const fetchUser = async () => {
-      setLoadingUserData(true);
-      try {
-        const response = await fetchUserData();
-        setUserData(response);
-        setUnFilterUserData(response);
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      } finally {
-        setLoadingUserData(false);
-      }
-    };
-    fetchUser();
-  }, []);
-
-  useEffect(() => {
-    let filteredData = unFilterUserData.filter((item) =>
+    let filteredData = userData.filter((item) =>
       item.name.toLowerCase().includes(searchUser.toLowerCase())
     );
-    setUserData(filteredData);
+    setFilterUserData(filteredData);
   }, [searchUser]);
 
   return (
@@ -155,13 +134,7 @@ const Header = ({ handleDrawerToggle, handleThemeToggle }) => {
             items,
           }}
         >
-          <a onClick={(e) => e.preventDefault()}>
-            <Avatar
-              className='sign-avatar'
-              size={20}
-              icon={<UserOutlined />}
-            />
-          </a>
+          <UserOutlined />
         </Dropdown>
       </div>
     </AntHeader>

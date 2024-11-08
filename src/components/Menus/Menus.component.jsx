@@ -40,7 +40,6 @@ import './Menus.style.scss';
 
 const Menus = () => {
   const location = useLocation();
-  const [defaultKey, setDefaultKey] = useState();
 
   const [currentPage, setCurrentPage] = useAtom(currentPageAtom);
 
@@ -52,7 +51,6 @@ const Menus = () => {
 
     menuItems.map((item) => {
       if (item.key == currentPath) {
-        setDefaultKey(currentPath);
         setCurrentPage(currentPath);
       }
     });
@@ -61,7 +59,7 @@ const Menus = () => {
   return (
     <Menu
       className='c-menu'
-      selectedKeys={[defaultKey]}
+      selectedKeys={[currentPage]}
       mode={'inline'}
       items={menuItems}
     />

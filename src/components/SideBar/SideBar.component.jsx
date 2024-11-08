@@ -4,7 +4,7 @@ import { Layout } from 'antd';
 const { Sider } = Layout;
 
 import './SideBar.style.scss';
-import Menus from '../Menus/Menus.compoent';
+import Menus from '../Menus/Menus.component';
 
 const SideBar = () => {
   return (

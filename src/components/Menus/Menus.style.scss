@@ -12,6 +12,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    transition: none !important;
 
     &:hover,
     &.ant-menu-item-selected {
@@ -26,6 +27,7 @@
     }
 
     .anticon {
+      transition: none !important;
       background: var(--white);
       padding: 0.5rem;
       border-radius: 5px;

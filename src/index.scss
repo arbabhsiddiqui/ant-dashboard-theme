@@ -59,3 +59,15 @@ body {
 .d-none {
   display: none !important;
 }
+
+.table-container {
+  padding: 1rem;
+  border-radius: 10px;
+  background: var(--white);
+  h2 {
+    margin-block-end: 20px;
+  }
+  .ant-table-wrapper {
+    overflow-x: auto;
+  }
+}

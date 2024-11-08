@@ -6,7 +6,7 @@ import { useAtom } from 'jotai';
 // local imports
 import Header from '..//Header/Header.component';
 import SideBar from '../SideBar/SideBar.component';
-import Menus from '../Menus/Menus.compoent';
+import Menus from '../Menus/Menus.component';
 import { darkModeAtom } from '../../store/commonStore';
 
 import './LayoutHandler.style.scss';
@@ -25,7 +25,6 @@ const LayoutHandler = () => {
   };
   useEffect(() => {
     if (isDarkMode) {
-      console.log(isDarkMode);
       document.body.setAttribute('data-theme', 'dark');
     } else {
       document.body.removeAttribute('data-theme');

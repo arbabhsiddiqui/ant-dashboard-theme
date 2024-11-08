@@ -4,4 +4,4 @@ import { atom } from 'jotai';
 export const dataAtom = atom([]);
 
 // Atom to hold the loading state
-export const loadingAtom = atom(true);
+export const filterDataAtom = atom([]);
