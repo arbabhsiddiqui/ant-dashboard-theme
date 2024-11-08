@@ -1,7 +1,8 @@
 .c-header {
   height: auto;
   background: var(--base);
-  padding: 1rem;
+  padding-block: 1rem;
+  padding-inline: 2rem;
   display: flex;
   justify-content: space-between;
   flex-direction: column;

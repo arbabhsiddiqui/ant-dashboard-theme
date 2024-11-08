@@ -232,6 +232,26 @@ const Dashboard = () => {
         </Col>
       </Row>
 
+      {/* user table area */}
+      <Card className='table-container'>
+        <h2>Users</h2>
+        <Row>
+          <Col span={24}>
+            {loadingUserData ? (
+              <Skeleton />
+            ) : (
+              <Table
+                columns={userColumns}
+                dataSource={userData}
+                pagination={{
+                  position: ['none', 'none'],
+                }}
+              />
+            )}
+          </Col>
+        </Row>
+      </Card>
+
       {/* chart area */}
       <Row gutter={[24, 23]}>
         <Col
@@ -260,26 +280,6 @@ const Dashboard = () => {
           </Card>
         </Col>
       </Row>
-
-      {/* user table area */}
-      <Card className='table-container'>
-        <h2>Users</h2>
-        <Row>
-          <Col span={24}>
-            {loadingUserData ? (
-              <Skeleton />
-            ) : (
-              <Table
-                columns={userColumns}
-                dataSource={userData}
-                pagination={{
-                  position: ['none', 'none'],
-                }}
-              />
-            )}
-          </Col>
-        </Row>
-      </Card>
 
       {/* user table area */}
 

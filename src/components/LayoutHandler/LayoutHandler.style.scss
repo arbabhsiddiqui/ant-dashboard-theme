@@ -1,6 +1,7 @@
 .c-layout {
   &__content-area {
-    padding: 1rem;
+    padding-block: 2rem;
+    padding-inline: 3rem;
     min-height: 89vh;
     color: #000;
   }

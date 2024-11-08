@@ -16,7 +16,7 @@
     &:hover,
     &.ant-menu-item-selected {
       background: var(--white) !important;
-      box-shadow: 0 20px 27px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.144);
       color: var(--black);
 
       .anticon {

@@ -1,5 +1,6 @@
+import { useEffect, useState } from 'react';
 import { Menu } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {
   DatabaseFilled,
   HomeOutlined,
@@ -12,7 +13,7 @@ import {
 // Define menu items array
 const menuItems = [
   {
-    key: 'home',
+    key: '/',
     icon: <HomeOutlined />,
     label: <Link to='/'>Dashboard</Link>,
   },
@@ -36,10 +37,26 @@ const menuItems = [
 import './Menus.style.scss';
 
 const Menus = () => {
+  const location = useLocation();
+  const [defaultKey, setDefaultKey] = useState();
+
+  useEffect(() => {
+    const currentPath =
+      location.pathname.length > 1
+        ? location.pathname.replace(/^\//, '')
+        : location.pathname;
+
+    menuItems.map((item) => {
+      if (item.key == currentPath) {
+        setDefaultKey(currentPath);
+      }
+    });
+  }, [location]);
+
   return (
     <Menu
       className='c-menu'
-      defaultSelectedKeys={['home']}
+      selectedKeys={[defaultKey]}
       mode={'inline'}
       items={menuItems}
     />

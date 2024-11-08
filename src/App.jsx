@@ -21,6 +21,11 @@ function App() {
             path={'/user-management'}
             element={<UserManagement />}
           />
+
+          <Route
+            path={'/user-management/*'}
+            element={<UserManagement />}
+          />
           <Route
             path={'/reports'}
             element={<Report />}
