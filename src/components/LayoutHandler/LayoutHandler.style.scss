@@ -1,11 +1,8 @@
 .c-layout {
-  border-radius: 8;
   overflow: 'hidden';
-  width: 100%;
-
   &__content-area {
     padding-inline: 1rem;
-    min-height: 93vh;
+    min-height: 89vh;
     color: #000;
   }
 }

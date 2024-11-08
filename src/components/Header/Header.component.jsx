@@ -6,6 +6,7 @@ import {
   Avatar,
   Badge,
   Dropdown,
+  Button,
 } from 'antd';
 import {
   SearchOutlined,
@@ -51,17 +52,27 @@ const Header = ({ collapsed, setCollapsed }) => {
   return (
     <AntHeader className='c-header'>
       <div className='c-header__title-area'>
-        <Breadcrumb
-          items={[
-            {
-              title: 'Pages',
-            },
-            {
-              title: 'dashboard',
-            },
-          ]}
-        />
-        <h3>Dashboard</h3>
+        <Button
+          onClick={() => {
+            setCollapsed(!collapsed);
+          }}
+        >
+          <AlignLeftOutlined />
+        </Button>
+
+        <div className='title'>
+          <Breadcrumb
+            items={[
+              {
+                title: 'Pages',
+              },
+              {
+                title: 'dashboard',
+              },
+            ]}
+          />
+          <h3>Dashboard</h3>
+        </div>
       </div>
 
       <div className='c-header__profile-area'>
@@ -71,11 +82,7 @@ const Header = ({ collapsed, setCollapsed }) => {
             placeholder='Search'
           />
         </Space.Compact>
-        <AlignLeftOutlined
-          onClick={() => {
-            setCollapsed(!collapsed);
-          }}
-        />
+
         <Badge
           className='hover'
           count={4}

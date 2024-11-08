@@ -140,7 +140,7 @@ const Dashboard = () => {
           xs={24}
           sm={24}
           md={12}
-          lg={8}
+          lg={12}
           xl={6}
         >
           <Card>
@@ -165,7 +165,7 @@ const Dashboard = () => {
           xs={24}
           sm={24}
           md={12}
-          lg={8}
+          lg={12}
           xl={6}
         >
           <Card>
@@ -190,7 +190,7 @@ const Dashboard = () => {
           xs={24}
           sm={24}
           md={12}
-          lg={8}
+          lg={12}
           xl={6}
         >
           <Card>
@@ -215,7 +215,7 @@ const Dashboard = () => {
           xs={24}
           sm={24}
           md={12}
-          lg={8}
+          lg={12}
           xl={6}
         >
           <Card>
@@ -238,6 +238,7 @@ const Dashboard = () => {
         </Col>
       </Row>
 
+      {/* user table */}
       <section className='table-container'>
         <h2>Users</h2>
         <Row>
@@ -256,6 +257,50 @@ const Dashboard = () => {
           </Col>
         </Row>
       </section>
+
+      {/* user activity */}
+
+      <section className='table-container'>
+        <h2>Recent Activities</h2>
+        <Row>
+          <Col span={24}>
+            {loadingActivityData ? (
+              <Skeleton />
+            ) : (
+              <Table
+                columns={activityColumns}
+                dataSource={activityData}
+                pagination={{
+                  position: ['none', 'none'],
+                }}
+              />
+            )}
+          </Col>
+        </Row>
+      </section>
+
+      {/* user activity */}
+
+      <section className='table-container'>
+        <h2>Recent Activities</h2>
+        <Row>
+          <Col span={24}>
+            {loadingActivityData ? (
+              <Skeleton />
+            ) : (
+              <Table
+                columns={activityColumns}
+                dataSource={activityData}
+                pagination={{
+                  position: ['none', 'none'],
+                }}
+              />
+            )}
+          </Col>
+        </Row>
+      </section>
+
+      {/* user activity */}
 
       <section className='table-container'>
         <h2>Recent Activities</h2>
