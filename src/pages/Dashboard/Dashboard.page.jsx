@@ -11,9 +11,11 @@ import {
 // local imports
 import { fetchActivityData } from '../../utils/dataHelper';
 import { dataAtom, loadingAtom } from '../../store/userStore';
+import RevenueTrendsChart from '../../components/RevenueTrendsChart/RevenueTrendsChart.component';
+
+import UserActivityChart from '../../components/UserActivityChart/UserActivityChart.component';
 
 import './Dashboard.style.scss';
-
 const userColumns = [
   {
     title: 'Name',
@@ -122,7 +124,9 @@ const Dashboard = () => {
 
   return (
     <div className='p-dashboard'>
+      {/* progress cards area */}
       <Row gutter={[24, 23]}>
+        {/* item */}
         <Col
           xs={24}
           sm={24}
@@ -148,6 +152,7 @@ const Dashboard = () => {
             </Flex>
           </Card>
         </Col>
+        {/* item */}
         <Col
           xs={24}
           sm={24}
@@ -173,6 +178,7 @@ const Dashboard = () => {
             </Flex>
           </Card>
         </Col>
+        {/* item */}
         <Col
           xs={24}
           sm={24}
@@ -198,6 +204,7 @@ const Dashboard = () => {
             </Flex>
           </Card>
         </Col>
+        {/* item */}
         <Col
           xs={24}
           sm={24}
@@ -225,7 +232,36 @@ const Dashboard = () => {
         </Col>
       </Row>
 
-      {/* user table */}
+      {/* chart area */}
+      <Row gutter={[24, 23]}>
+        <Col
+          xs={24}
+          sm={24}
+          md={24}
+          lg={12}
+          xl={12}
+        >
+          <Card>
+            <h2>Revenue Trends</h2>
+            <RevenueTrendsChart />
+          </Card>
+        </Col>
+
+        <Col
+          xs={24}
+          sm={24}
+          md={24}
+          lg={12}
+          xl={12}
+        >
+          <Card>
+            <h2>User Activity</h2>
+            <UserActivityChart />
+          </Card>
+        </Col>
+      </Row>
+
+      {/* user table area */}
       <Card className='table-container'>
         <h2>Users</h2>
         <Row>
@@ -245,7 +281,7 @@ const Dashboard = () => {
         </Row>
       </Card>
 
-      {/* user activity */}
+      {/* user table area */}
 
       <Card className='table-container'>
         <h2>Recent Activities</h2>

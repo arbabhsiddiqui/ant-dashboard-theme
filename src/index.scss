@@ -38,14 +38,6 @@ body {
   position: relative;
 }
 
-p {
-  background: red;
-
-  &:hover {
-    background: green;
-  }
-}
-
 .text-light {
   --ant-color-text-heading: #fff;
 }
