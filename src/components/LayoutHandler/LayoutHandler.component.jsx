@@ -50,7 +50,6 @@ const LayoutHandler = () => {
           <Drawer
             title='Demo'
             placement='left'
-            closable={false}
             onClose={() => {
               setIsDrawerOpen(false);
             }}

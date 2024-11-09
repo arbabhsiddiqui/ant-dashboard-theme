@@ -1,4 +1,8 @@
 .c-layout {
+  .ant-drawer-header-title {
+    flex-direction: row-reverse;
+  }
+
   &__content-area {
     padding-block: 1rem;
     padding-inline: 1rem;

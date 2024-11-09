@@ -71,3 +71,7 @@ body {
     overflow-x: auto;
   }
 }
+
+.ant-drawer-header-title {
+  flex-direction: row-reverse;
+}
